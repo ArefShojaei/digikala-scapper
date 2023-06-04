@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const fs = require('fs/promises');
+const path = require('path');
 
 const run = async () => {
     const browser = await puppeteer.launch({
@@ -19,8 +21,8 @@ const run = async () => {
     await page.evaluate(() => {
         return new Promise((resolve, reject) => {
             const scrollInterval = setInterval(() => {
-                const scroll_height = document.body.scrollHeight
-                const scroll_y = window.scrollY
+                let scroll_height = document.body.scrollHeight
+                let scroll_y = window.scrollY
 
                 scroll_y += 800;
                 window.scroll(0, scroll_y);
@@ -79,6 +81,11 @@ const run = async () => {
         });
     });
 
+
+    // create JSON file for importing the data
+    await fs.writeFile(path.join(__dirname, "./data/products.json"), JSON.stringify(products), "utf-8") 
+
+    // close the browser and exiting from run function
     await browser.close()
 }
 
