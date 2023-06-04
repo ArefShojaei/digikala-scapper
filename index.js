@@ -15,7 +15,7 @@ const run = async () => {
 
     await page.waitForTimeout(10000) // wait for "10 seconds"
 
-    // communicating with DOM
+    // communicate with DOM
     await page.evaluate(() => {
         return new Promise((resolve, reject) => {
             const scrollInterval = setInterval(() => {
@@ -33,7 +33,51 @@ const run = async () => {
         })
     })
 
+    // get HTML
     const html = await page.content()
+
+    // parse the template as HTML
+    const $ = cheerio.load(html)
+
+    // declare products Array for adding new product to this Array
+    const products = []
+
+    // select product element of the HTML
+    $("div > div[data-product-index]").each((index, element) => {
+        // find and select anchor element
+        const product = $(element).find("a");
+
+        // get values of the product like :
+        /*
+            * ID
+            * link
+            * image
+            * name
+            * price
+            * rate
+            * freeSend
+            * status
+        */
+        const [title, lastnumber] = product.find("div[data-ab-id]").parent().text().trim().split(".")
+        const firstNumber = title.slice(-1)
+        const numberIndex = title.indexOf(firstNumber)
+
+        const productRate = `${firstNumber}${lastnumber === undefined ? '' : '.' + lastnumber}`
+        let [productSend, productPrice] = product.find("div span").text().trim().split("ارسال رایگان")
+        productSend = "ارسال رایگان"
+        
+        // save the product in products Array for a new data
+        products.push({
+            id: product.parent().attr("data-product-index"),
+            link: "https://www.digikala.com" + product.attr("href"),
+            image: product.find("picture img").attr("src"),
+            name: product.find("h3").text().trim(),
+            price: productPrice,
+            rate : productRate,
+            freeSend: productSend ? true : false,
+            status : title.slice(0, numberIndex).length >= 7 ? title.slice(0, numberIndex) : '' ,
+        });
+    });
 
     await browser.close()
 }
