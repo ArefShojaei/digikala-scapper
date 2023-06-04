@@ -1,0 +1,27 @@
+{
+  "name": "digikala-scapper",
+  "version": "1.0.0",
+  "description": "This project is a Scapper for \"digikala.com\" website that has been created by Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ArefShojaei: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@github.com/ArefShojaei/digikala-scapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArefShojaei/digikala-scapper/issues"
+  },
+  "homepage": "https://github.com/ArefShojaei/digikala-scapper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^20.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
