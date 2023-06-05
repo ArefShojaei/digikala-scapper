@@ -1,29 +1,32 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-const fs = require('fs/promises');
+const fsPromise = require('fs/promises');
+const fs = require('fs');
 const path = require('path');
 
-module.exports = async ({ targetLinks, targetNames, targetCategoryName }) => {
+module.exports = async ({ categoryName, links, names }) => {
     // setup
     const browser = await puppeteer.launch({
         executablePath:
             "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-        headless: false,
+        headless: true,
         defaultViewport: { width: 1366, height: 768 },
     });
 
-    // declare a index variable as key for getting names in targetNames Array
+    // declare an index variable as key for getting names in targetNames Array
     let index = 0
 
-    // handle targetLinks as a Link for every tab of the browser step by step
-    for(const link of targetLinks) {
+    // handle links as a Link for every tab of the browser step by step
+    for(const link of links) {
         // create new Tab
         const page = await browser.newPage()
         
+        await page.setDefaultNavigationTimeout(0);
+
         // navigate to a website
         await page.goto(link)
 
-        // after navigated to the website , wait for "10 seconds"
+        // after navigated to the website , wait for "20 seconds"
         await page.waitForTimeout(10000)
 
         // communicate with DOM
@@ -40,7 +43,7 @@ module.exports = async ({ targetLinks, targetNames, targetCategoryName }) => {
                         clearInterval(scrollInterval);
                         resolve()
                     }
-                }, 4000);
+                }, 3000);
             })
         })
 
@@ -90,8 +93,16 @@ module.exports = async ({ targetLinks, targetNames, targetCategoryName }) => {
             });
         });
 
+        // create Folder and checking for existing
+        const isExistFolder = fs.existsSync(path.join(__dirname, `./data/${categoryName}`))
+        console.log(isExistFolder);
+
+        if(!isExistFolder) {
+            await fsPromise.mkdir(path.join(__dirname, `./data/${categoryName}/`))
+        }
+        
         // create JSON file for importing and saving the data to this file
-        await fs.writeFile(path.join(__dirname, `./data/${targetCategoryName}___${targetNames[index]}.json`), JSON.stringify(products), "utf-8") 
+        await fsPromise.writeFile(path.join(__dirname, `./data/${categoryName}/${names[index]}.json`), JSON.stringify(products), "utf-8") 
 
         // increment index variable
         index++
