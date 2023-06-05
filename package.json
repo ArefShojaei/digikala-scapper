@@ -4,7 +4,8 @@
   "description": "This project is a Scapper for \"digikala.com\" website that has been created by Nodejs",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "dev" : "nodemon server.js"
   },
   "repository": {
     "type": "git",
