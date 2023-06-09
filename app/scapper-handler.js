@@ -9,7 +9,7 @@ module.exports = async ({ categoryName, links, names }) => {
     const browser = await puppeteer.launch({
          executablePath:
             "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-//         headless: true,
+        headless: true,
         defaultViewport: { width: 1366, height: 768 },
     });
 
