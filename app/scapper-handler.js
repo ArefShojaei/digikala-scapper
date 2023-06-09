@@ -7,8 +7,10 @@ const path = require('path');
 module.exports = async ({ categoryName, links, names }) => {
     // setup
     const browser = await puppeteer.launch({
+         executablePath:
+            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        headless: true,
         defaultViewport: { width: 1366, height: 768 },
-        args: ['--no-sandbox']
     });
 
     // declare an index variable as key for getting names in targetNames Array
