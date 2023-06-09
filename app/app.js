@@ -8,12 +8,12 @@ const { APP_PORT } = process.env
 
 module.exports = () => {
     // run scapper
-//     const timer = 60000 * 60 * 24 // 24 hours | 1 day
-//     setTimeout(() => {
-        
-//     }, timer)
+    const timer = 60000 * 60 * 24 // 24 hours | 1 day
+    setTimeout(() => {
+        scapper()       
+    }, timer)
     
-    scapper()
+    
 
     // handle CORS 
     app.use(cors());
