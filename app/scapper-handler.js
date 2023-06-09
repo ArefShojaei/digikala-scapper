@@ -9,6 +9,7 @@ module.exports = async ({ categoryName, links, names }) => {
     const browser = await puppeteer.launch({
         headless: true,
         defaultViewport: { width: 1366, height: 768 },
+        args: ['--no-sandbox']
     });
 
     // declare an index variable as key for getting names in targetNames Array
