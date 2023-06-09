@@ -7,7 +7,6 @@ const path = require('path');
 module.exports = async ({ categoryName, links, names }) => {
     // setup
     const browser = await puppeteer.launch({
-        headless:"new",
         defaultViewport: { width: 1366, height: 768 },
         args: ['--no-sandbox']
     });
