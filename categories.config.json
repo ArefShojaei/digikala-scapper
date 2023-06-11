@@ -2,6 +2,23 @@
     "mobile" : {
         "apple" : "https://www.digikala.com/search/category-mobile-phone/apple/",
         "samsung" : "https://www.digikala.com/search/category-mobile-phone/samsung/",
-        "xiaomi" : "https://www.digikala.com/search/category-mobile-phone/xiaomi/"
+        "xiaomi" : "https://www.digikala.com/search/category-mobile-phone/xiaomi/",
+        "nokia" : "https://www.digikala.com/search/category-mobile-phone/product-list/?brands%5b0%5d=20",
+        "huawei" : "https://www.digikala.com/search/category-mobile-phone/product-list/?brands%5b0%5d=82",
+        "honor" : "https://www.digikala.com/search/category-mobile-phone/honor/"
+    },
+    "laptop" : {
+        "msi" : "https://www.digikala.com/search/notebook-netbook-ultrabook/?brands%5B0%5D=95&has_selling_stock=1&sort=7",
+        "lenovo" : "https://www.digikala.com/search/notebook-netbook-ultrabook/product-list/?brands%5B0%5D=94&sort=7",
+        "hp" : "https://www.digikala.com/search/notebook-netbook-ultrabook/product-list/?brands%5B0%5D=6&sort=7",
+        "asus" : "https://www.digikala.com/search/notebook-netbook-ultrabook/product-list/?brands%5B0%5D=4&sort=7",
+        "acer" : "https://www.digikala.com/search/notebook-netbook-ultrabook/product-list/?brands%5B0%5D=3&sort=7",
+        "apple" : "https://www.digikala.com/search/notebook-netbook-ultrabook/product-list/?brands%5B0%5D=10&sort=7"
+    },
+    "software" : {
+        "app" : "https://www.digikala.com/search/category-pc-mac-software/",
+        "game" : "https://www.digikala.com/search/category-pc-game/",
+        "security" : "https://www.digikala.com/search/category-security-software/",
+        "os" : "https://www.digikala.com/search/category-os-software/"
     }
 }
