@@ -13,7 +13,6 @@ module.exports = () => {
         scapper()       
     }, timer)
     
-    
 
     // handle CORS 
     app.use(cors());
@@ -23,5 +22,5 @@ module.exports = () => {
     app.use(notFoundRoute)
 
     // launch the app
-    app.listen(APP_PORT)
+    app.listen(APP_PORT || 3000)
 };

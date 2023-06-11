@@ -3,15 +3,16 @@ const cheerio = require('cheerio');
 const fsPromise = require('fs/promises');
 const fs = require('fs');
 const path = require('path');
+const { EXECUTABLEPATH } = process.env
 
 module.exports = async ({ categoryName, links, names }) => {
     // setup
     const browser = await puppeteer.launch({
-         executablePath:
-            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        executablePath: EXECUTABLEPATH,
         headless: true,
         defaultViewport: { width: 1366, height: 768 },
     });
+
 
     // declare an index variable as key for getting names in targetNames Array
     let index = 0
@@ -95,7 +96,6 @@ module.exports = async ({ categoryName, links, names }) => {
 
         // create Folder and checking for existing
         const isExistFolder = fs.existsSync(path.join(__dirname, `./data/${categoryName}`))
-        console.log(isExistFolder);
 
         if(!isExistFolder) {
             await fsPromise.mkdir(path.join(__dirname, `./data/${categoryName}/`))

@@ -1,18 +1,21 @@
 const path = require("path");
 const scapper = require('@app/scapper-handler');
-const extractJSON = require('@utils/extractJSON-util');
+const extractJSON = require('@utils/extractCategoriesJSON-util');
 
 module.exports = async () => {
-    // extract categories JSON data
-    const jsonFileDetails = await extractJSON(path.join(__dirname, "../categories.config.json"))
-    
-    // get categoryName , links and names data from JSON file
-    const { categoryName, links, names } = jsonFileDetails;
+    // get JSON config file content
+    const extractedCategoriesJSON = await extractJSON(path.join(__dirname, "../categories.config.json"))
 
-    // run scapper function and give the data as an object
-    scapper({
-        categoryName,
-        links,
-        names,
-    });
+    // loop to the JSON file
+    for (const currentCategory of extractedCategoriesJSON ) {
+        // extract currentCategory data like this
+        const { categoryName, names, links } = currentCategory
+
+        // set the data for scapper handler function as an object
+        await scapper({
+            categoryName,
+            links,
+            names
+        })
+    } 
 }
