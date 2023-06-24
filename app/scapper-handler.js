@@ -3,13 +3,15 @@ const cheerio = require('cheerio');
 const fsPromise = require('fs/promises');
 const fs = require('fs');
 const path = require('path');
-const { EXECUTABLEPATH } = process.env
+const { NODE_ENV } = process.env
+
+const headless = NODE_ENV === "development" ? false : true
 
 module.exports = async ({ categoryName, links, names }) => {
     // setup
     const browser = await puppeteer.launch({
-        executablePath: EXECUTABLEPATH,
-        headless: true,
+        headless,
+        ignoreHTTPSErrors : true,
         defaultViewport: { width: 1366, height: 768 },
     });
 
@@ -27,7 +29,7 @@ module.exports = async ({ categoryName, links, names }) => {
         // navigate to a website
         await page.goto(link)
 
-        // after navigated to the website , wait for "20 seconds"
+        // after navigated to the website , wait for "10 seconds"
         await page.waitForTimeout(10000)
 
         // communicate with DOM
