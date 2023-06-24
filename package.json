@@ -31,7 +31,7 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "module-alias": "^2.2.3",
-    "puppeteer": "^20.5.0"
+    "puppeteer": "^15.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
